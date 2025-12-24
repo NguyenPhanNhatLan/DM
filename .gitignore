@@ -1,0 +1,57 @@
+# Byte-compiled / optimized / compressed files
+__pycache__/
+*.py[cod]
+*.pyd
+*.bin
+
+# Temporaries
+*.tmp
+
+# Shared Library
+*.so
+
+# Distribution / Packaging
+.Python
+build/
+develop-eggs/
+dist/
+eggs/
+*.egg-info/
+.installed.cfg
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.whl
+
+# Specifics to VCS
+.mtn/
+.svn/
+.hg/
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+
+# Miscellaneous data
+*.backup
+*.log
+!README.log
+*.ignore
+*.sqlite
+*.sqlite3
+
+# Editors and IDEs
+.idea/  # For PyCharm
+.vscode/ # For VS Code
+*.swp
+*~
+.sess/
+.history/
