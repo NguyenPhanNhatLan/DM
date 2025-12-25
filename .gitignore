@@ -55,3 +55,6 @@ venv.bak/
 *~
 .sess/
 .history/
+.DS_store
+dashboard/.DS_Store
+.DS_Store
