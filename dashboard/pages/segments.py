@@ -55,8 +55,8 @@ st.markdown("""
 # TẢI DỮ LIỆU
 # =========================
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-df = pd.read_csv(os.path.join(BASE_DIR, "..", "..", "data", "customer.csv"))
-df = df[['job', 'age', 'balance', 'housing', 'loan', 'target']].copy()
+df = pd.read_csv(os.path.join(BASE_DIR, "..","..", "data", "customer.csv"))
+df = df[['age', 'balance', 'housing', 'loan', 'target', 'job', 'marital', 'default']].copy()
 
 # =========================
 # XỬ LÝ ĐẶC TRƯNG
@@ -273,3 +273,4 @@ with c4:
 st.caption(
     "Lưu ý: Các giá trị thể hiện tỷ lệ đăng ký trung bình trong từng phân khúc khách hàng."
 )
+## run py -m streamlit run dashboard/app.py
