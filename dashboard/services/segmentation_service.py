@@ -1,11 +1,8 @@
-# services/segmentation_service.py
-from __future__ import annotations
-
 import numpy as np
 import pandas as pd
 
 from dataclasses import dataclass
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Tuple
 
 from sklearn.model_selection import train_test_split
 from sklearn.pipeline import Pipeline
@@ -15,8 +12,6 @@ from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LogisticRegression
 from sklearn.cluster import KMeans
 from sklearn.metrics import roc_auc_score, average_precision_score
-
-
 @dataclass(frozen=True)
 class SegConfig:
     target_col: str = "target"
@@ -26,12 +21,12 @@ class SegConfig:
     test_size: float = 0.2
     seed: int = 42
     max_iter: int = 5000
-    call_budget: float = 0.10       # 10% by default
-    k: int = 8                      # default k-means
+    call_budget: float = 0.10
+    k: int = 8
 
 
 
-def precision_at_k(y_true, p, k_frac: float):
+def precision_at_k(y_true, p, k_frac=0.2):
     y_true = pd.Series(y_true).reset_index(drop=True)
     p = np.asarray(p)
     n = len(p)
@@ -39,10 +34,12 @@ def precision_at_k(y_true, p, k_frac: float):
     idx = np.argsort(-p)[:k]
     return float(y_true.iloc[idx].mean())
 
-def lift_at_k(y_true, p, k_frac: float):
+
+def lift_at_k(y_true, p, k_frac=0.2):
     base = float(pd.Series(y_true).mean())
     prec = precision_at_k(y_true, p, k_frac)
     return prec / base if base > 0 else np.nan
+
 
 def top_share(series: pd.Series, top_n: int = 3):
     vc = series.value_counts(normalize=True, dropna=False).head(top_n)
@@ -72,7 +69,6 @@ def build_preprocess(df: pd.DataFrame, features: List[str]) -> Tuple[ColumnTrans
 
 
 def fit_score_model(df: pd.DataFrame, cfg: SegConfig):
-    # Validate columns
     need_cols = [cfg.target_col, *cfg.segment_features]
     missing = [c for c in need_cols if c not in df.columns]
     if missing:
@@ -83,9 +79,14 @@ def fit_score_model(df: pd.DataFrame, cfg: SegConfig):
 
     preprocess, _, _ = build_preprocess(df, list(cfg.segment_features))
 
+    model = LogisticRegression(
+        max_iter=cfg.max_iter,
+        class_weight="balanced",
+    )
+
     pipe = Pipeline([
         ("prep", preprocess),
-        ("clf", LogisticRegression(max_iter=cfg.max_iter, class_weight="balanced")),
+        ("clf", model),
     ])
 
     X_train, X_test, y_train, y_test = train_test_split(
@@ -98,22 +99,30 @@ def fit_score_model(df: pd.DataFrame, cfg: SegConfig):
     pipe.fit(X_train, y_train)
     p_test = pipe.predict_proba(X_test)[:, 1]
 
+    df_scored = df.copy()
+    df_scored["p_yes"] = pipe.predict_proba(df_scored[list(cfg.segment_features)])[:, 1]
+
+    base_conv = float(df_scored[cfg.target_col].mean())  # BASE_CONV in notebook
+
     metrics = {
+        # hold-out quality (notebook)
         "roc_auc": float(roc_auc_score(y_test, p_test)),
         "pr_auc": float(average_precision_score(y_test, p_test)),
-        "base_conv": float(y.mean()),
+
+        # baseline conversion (overall)
+        "base_conv": base_conv,
+
+        # top-k metrics (notebook print loop uses y_test/p_test)
         "top5_prec": float(precision_at_k(y_test, p_test, 0.05)),
         "top10_prec": float(precision_at_k(y_test, p_test, 0.10)),
         "top20_prec": float(precision_at_k(y_test, p_test, 0.20)),
         "top30_prec": float(precision_at_k(y_test, p_test, 0.30)),
+
         "top5_lift": float(lift_at_k(y_test, p_test, 0.05)),
         "top10_lift": float(lift_at_k(y_test, p_test, 0.10)),
         "top20_lift": float(lift_at_k(y_test, p_test, 0.20)),
         "top30_lift": float(lift_at_k(y_test, p_test, 0.30)),
     }
-
-    df_scored = df.copy()
-    df_scored["p_yes"] = pipe.predict_proba(df_scored[list(cfg.segment_features)])[:, 1]
 
     return pipe, df_scored, metrics
 
@@ -123,37 +132,42 @@ def select_candidates(df_scored: pd.DataFrame, cfg: SegConfig) -> pd.DataFrame:
     return df_scored[df_scored["p_yes"] >= thr].copy()
 
 
-def cluster_candidates(candidates: pd.DataFrame, cfg: SegConfig,fitted_prep: ColumnTransformer, overall_conv: float):
-    # Fit preprocess on candidates only
+def cluster_candidates(
+    candidates: pd.DataFrame,
+    cfg: SegConfig,
+    fitted_prep: ColumnTransformer,
+    base_conv: float,
+):
     X_seg = fitted_prep.transform(candidates[list(cfg.segment_features)])
+
     km = KMeans(n_clusters=cfg.k, random_state=cfg.seed, n_init="auto")
     candidates = candidates.copy()
     candidates["segment"] = km.fit_predict(X_seg)
 
-    base_conv = float(candidates[cfg.target_col].mean())
-    # segment summary
+    cand_conv = float(candidates[cfg.target_col].mean())
+
     seg_summary = candidates.groupby("segment").agg(
         n=(cfg.target_col, "size"),
         conversion=(cfg.target_col, "mean"),
         avg_score=("p_yes", "mean"),
-    ).sort_values("conversion", ascending=False)
+    )
 
-    # lift vs overall requires overall base conversion from df_scored, but we can pass it later;
-    # here we compute lift vs candidates only
-    seg_summary["lift_vs_candidates"] = seg_summary["conversion"] / base_conv
-    seg_summary["lift_vs_overall"] = seg_summary["conversion"] / overall_conv
+    seg_summary["lift_vs_candidates"] = seg_summary["conversion"] / cand_conv if cand_conv > 0 else np.nan
+    seg_summary["lift_vs_overall"] = seg_summary["conversion"] / base_conv if base_conv > 0 else np.nan
     seg_summary = seg_summary.sort_values("lift_vs_overall", ascending=False)
+
     return candidates, seg_summary
 
 
-def build_profiles(candidates: pd.DataFrame, cfg: SegConfig, overall_conv: float) -> pd.DataFrame:
+def build_profiles(candidates: pd.DataFrame, cfg: SegConfig, base_conv: float) -> pd.DataFrame:
     rows = []
     for seg_id, sub in candidates.groupby("segment"):
+        conv = float(sub[cfg.target_col].mean())
         row = {
             "segment": int(seg_id),
             "n": int(len(sub)),
-            "conversion": float(sub[cfg.target_col].mean()),
-            "lift_vs_overall": float(sub[cfg.target_col].mean() / overall_conv) if overall_conv > 0 else np.nan,
+            "conversion": conv,
+            "lift_vs_overall": (conv / base_conv) if base_conv > 0 else np.nan,
             "avg_score": float(sub["p_yes"].mean()),
             "age_median": float(sub["age"].median()) if "age" in sub.columns else np.nan,
             "balance_median": float(sub["balance"].median()) if "balance" in sub.columns else np.nan,
@@ -168,7 +182,6 @@ def build_profiles(candidates: pd.DataFrame, cfg: SegConfig, overall_conv: float
 
 
 def tiering_from_profiles(profiles: pd.DataFrame) -> Dict[int, str]:
-    # Sort by lift_vs_overall; create 4 tiers similar logic bạn đã dùng
     prof = profiles.sort_values("lift_vs_overall", ascending=False).reset_index(drop=True)
     segs = prof["segment"].tolist()
 
@@ -179,37 +192,39 @@ def tiering_from_profiles(profiles: pd.DataFrame) -> Dict[int, str]:
         tier3 = segs[3:7]
         tier4 = segs[7:]
     else:
-        # fallback
-        cut1 = max(1, len(segs)//4)
-        cut2 = max(cut1+1, len(segs)//2)
-        cut3 = max(cut2+1, int(len(segs)*0.75))
+        cut1 = max(1, len(segs) // 4)
+        cut2 = max(cut1 + 1, len(segs) // 2)
+        cut3 = max(cut2 + 1, int(len(segs) * 0.75))
         tier1, tier2, tier3, tier4 = segs[:cut1], segs[cut1:cut2], segs[cut2:cut3], segs[cut3:]
 
-    for s in tier1: tier_map[int(s)] = "Tier 1 (High Priority)"
-    for s in tier2: tier_map[int(s)] = "Tier 2 (High Potential)"
-    for s in tier3: tier_map[int(s)] = "Tier 3 (Medium Priority)"
-    for s in tier4: tier_map[int(s)] = "Tier 4 (Low Priority)"
+    for s in tier1:
+        tier_map[int(s)] = "Tier 1 (High Priority)"
+    for s in tier2:
+        tier_map[int(s)] = "Tier 2 (High Potential)"
+    for s in tier3:
+        tier_map[int(s)] = "Tier 3 (Medium Priority)"
+    for s in tier4:
+        tier_map[int(s)] = "Tier 4 (Low Priority)"
     return tier_map
 
 
 def run_segmentation_pipeline(df: pd.DataFrame, cfg: SegConfig):
     pipe, df_scored, metrics = fit_score_model(df, cfg)
 
-    overall_conv = float(df_scored[cfg.target_col].mean())
+    base_conv = float(metrics["base_conv"])  # BASE_CONV like notebook
     candidates = select_candidates(df_scored, cfg)
-    cand_conv = float(candidates[cfg.target_col].mean())
-    cand_lift = float(cand_conv / overall_conv) if overall_conv > 0 else np.nan
 
-    candidates = select_candidates(df_scored, cfg)
+    cand_conv = float(candidates[cfg.target_col].mean())
+    cand_lift = float(cand_conv / base_conv) if base_conv > 0 else np.nan
+
     fitted_prep = pipe.named_steps["prep"]
-    candidates, seg_summary = cluster_candidates(candidates, cfg, fitted_prep)
-    profiles = build_profiles(candidates, cfg, overall_conv)
+    candidates, seg_summary = cluster_candidates(candidates, cfg, fitted_prep, base_conv)
+    profiles = build_profiles(candidates, cfg, base_conv)
 
     tier_map = tiering_from_profiles(profiles)
     candidates["tier"] = candidates["segment"].map(lambda s: tier_map.get(int(s), "Tier ?"))
     profiles["tier"] = profiles["segment"].map(lambda s: tier_map.get(int(s), "Tier ?"))
 
-    # optional campaign validation (if exists)
     campaign_table = None
     if "has_previous_campaign" in candidates.columns and "pdays_contacted" in candidates.columns:
         campaign_table = candidates.groupby("segment").agg(
@@ -218,12 +233,11 @@ def run_segmentation_pipeline(df: pd.DataFrame, cfg: SegConfig):
             conversion=(cfg.target_col, "mean"),
             n=(cfg.target_col, "size"),
         ).sort_values("conversion", ascending=False)
-
+    
     return {
         "pipe": pipe,
         "df_scored": df_scored,
-        "metrics": metrics,
-        "overall_conv": overall_conv,
+        "metrics": metrics,              # chứa base_conv
         "candidates": candidates,
         "cand_conv": cand_conv,
         "cand_lift": cand_lift,
