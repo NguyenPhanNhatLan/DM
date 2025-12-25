@@ -55,3 +55,6 @@ venv.bak/
 *~
 .sess/
 .history/
+__pycache__/
+*.pyc
+

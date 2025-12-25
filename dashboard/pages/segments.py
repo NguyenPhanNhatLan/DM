@@ -1,77 +1,72 @@
 # =========================================================
-# CUSTOMER KNOWLEDGE DASHBOARD (ACADEMIC – FINAL VERSION)
+# DASHBOARD TRI THỨC KHÁCH HÀNG (HỌC THUẬT – HOÀN CHỈNH)
+# python -m streamlit run dashboard/app.py
 # =========================================================
 
 import streamlit as st
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 import os
 
 # =========================
-# PAGE CONFIG
+# CẤU HÌNH TRANG
 # =========================
 st.set_page_config(
-    page_title="Customer Subscription Analytics",
+    page_title="Phân tích hành vi đăng ký tiền gửi",
     layout="wide",
     initial_sidebar_state="collapsed"
 )
 
 # =========================
-# GLOBAL STYLE (ACADEMIC)
+# STYLE CHUNG
 # =========================
 st.markdown("""
 <style>
 .block-container {
     padding-top: 1.2rem;
-    padding-bottom: 0rem;
     padding-left: 2.5rem;
     padding-right: 2.5rem;
 }
-
 .chart-card {
     background-color: white;
     border-radius: 10px;
-    padding: 8px;
+    padding: 10px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.08);
 }
 </style>
 """, unsafe_allow_html=True)
 
-# =========================
-# PLOTLY DEFAULT
-# =========================
 px.defaults.template = "plotly_white"
 
 # =========================
-# TITLE (ACADEMIC HIGHLIGHT)
+# TIÊU ĐỀ
 # =========================
 st.markdown("""
-<h1 style="font-size:28px;font-weight:600;margin-bottom:0.15rem;">
-    <span style="color:#2563eb;">Customer</span> Subscription Analytics
+<h1 style="font-size:28px;font-weight:600;margin-bottom:0.2rem;">
+    Phân tích đặc điểm khách hàng đăng ký tiền gửi
 </h1>
-<p style="color:#6b7280;font-size:14px;margin-top:0;">
-    One-screen academic dashboard for customer knowledge discovery
+<p style="color:#6b7280;font-size:14px;">
+    Dashboard học thuật nhằm khám phá đặc điểm và xu hướng đăng ký của khách hàng
 </p>
 """, unsafe_allow_html=True)
 
 # =========================
-# LOAD DATA
+# TẢI DỮ LIỆU
 # =========================
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-df = pd.read_csv(os.path.join(BASE_DIR, "..","..", "data", "customer.csv"))
-df = df[['age', 'balance', 'housing', 'loan', 'target']].copy()
+df = pd.read_csv(os.path.join(BASE_DIR, "..", "..", "data", "customer.csv"))
+df = df[['job', 'age', 'balance', 'housing', 'loan', 'target']].copy()
 
 # =========================
-# FEATURE ENGINEERING
+# XỬ LÝ ĐẶC TRƯNG
 # =========================
 df['age_group'] = pd.cut(
     df['age'],
     bins=[0, 29.5, 37.5, 58.5, 120],
-    labels=['< 29', '29–37', '37–58', '> 58'],
-    right=True
+    labels=['< 29', '29–37', '37–58', '> 58']
 )
 
-# enforce logical order (ACADEMIC DETAIL)
 df['age_group'] = pd.Categorical(
     df['age_group'],
     categories=['< 29', '29–37', '37–58', '> 58'],
@@ -91,167 +86,190 @@ df['balance_group'] = pd.cut(
     right=False
 )
 
-# =========================
-# KPI ROW (ACADEMIC EMPHASIS)
-# =========================
+BALANCE_COLORS = [
+    "#e0f2f1",
+    "#b2dfdb",
+    "#80cbc4",
+    "#4db6ac",
+    "#00796b"
+]
+
+# =========================================================
+# KPI – TÓM TẮT TRI THỨC
+# =========================================================
+housing_rate = df.groupby('housing')['target'].mean()
+housing_impact = housing_rate['no'] - housing_rate['yes']
+
+age_rate = df.groupby('age_group')['target'].mean()
+age_polarization = (
+    (age_rate['< 29'] + age_rate['> 58']) / 2
+    - (age_rate['29–37'] + age_rate['37–58']) / 2
+)
+
+balance_rate = df.groupby('balance_group')['target'].mean()
+balance_threshold = balance_rate[balance_rate > 0.15].index[0]
+
+job_age = df.groupby(['job', 'age_group'], observed=True)['target'].mean().reset_index()
+job_variance = job_age.groupby('job')['target'].std().mean()
+
 k1, k2, k3, k4 = st.columns(4)
 
-with k1:
+def kpi_card(title, value, subtitle):
     st.markdown(f"""
-    <div style="text-align:center;">
-        <div style="font-size:26px;font-weight:500;color:#374151;">
-            {len(df):,}
-        </div>
-        <div style="font-size:14px;color:#6b7280;">Customers</div>
+    <div style="
+        background-color:white;
+        border-radius:10px;
+        padding:14px;
+        box-shadow:0 1px 3px rgba(0,0,0,0.08);
+        text-align:center;">
+        <div style="font-size:13px;color:#6b7280;">{title}</div>
+        <div style="font-size:26px;font-weight:600;color:#111827;">{value}</div>
+        <div style="font-size:12px;color:#9ca3af;">{subtitle}</div>
     </div>
     """, unsafe_allow_html=True)
 
-k2.metric("Subscribers", f"{int(df['target'].sum()):,}")
+with k1:
+    kpi_card("Tác động của vay mua nhà", f"{housing_impact:.1%}", "Rào cản mạnh nhất")
 
-k3.metric(
-    "Subscription Rate",
-    f"{df['target'].mean()*100:.1f}%"
-)
+with k2:
+    kpi_card("Phân cực theo độ tuổi", f"{age_polarization:.1%}", "Hiệu ứng vòng đời tài chính")
 
-k4.metric("Avg Balance", f"{df['balance'].mean():,.0f}")
+with k3:
+    kpi_card("Ngưỡng số dư tối thiểu", balance_threshold, "Năng lực tài chính tối thiểu")
 
-# =========================
-# COLOR PALETTE
-# =========================
-BLUE = "#2563eb"
-TEAL = "#0d9488"
-GRAY = "#4b5563"
-LIGHT = "#c7d2fe"
+with k4:
+    kpi_card("Vai trò nghề nghiệp", "Phụ thuộc ngữ cảnh", "Không phải biến độc lập")
 
-# =========================
-# ROW 1 – UNIVARIATE
-# =========================
-c1, c2, c3 = st.columns(3)
+# =========================================================
+# BIỂU ĐỒ
+# =========================================================
+c1, c2 = st.columns(2)
 
-age_rate = df.groupby('age_group', observed=True)['target'].mean().reset_index()
-max_idx = age_rate['target'].idxmax()
+AGE_COLORS = {
+    '< 29': '#bfdbfe',
+    '29–37': '#93c5fd',
+    '37–58': '#3b82f6',
+    '> 58': '#1e40af'
+}
 
-fig_age = px.bar(
-    age_rate,
-    x='age_group',
+fig_job_age = px.bar(
+    job_age,
+    x='job',
     y='target',
-    title="Subscription Rate by Age Group",
-    text=age_rate['target'].apply(lambda x: f"{x:.1%}")
+    color='age_group',
+    barmode='group',
+    title="Tỷ lệ đăng ký theo nghề nghiệp và nhóm tuổi",
+    color_discrete_map=AGE_COLORS
+)
+COMMON_MARGIN = dict(l=40, r=20, t=60, b=90)
+fig_job_age.update_layout(
+    height=360,
+    margin=COMMON_MARGIN,
+    yaxis_title="Tỷ lệ đăng ký",
+    xaxis_title=None,
+    xaxis_tickangle=-25,
+    legend_title_text="Nhóm tuổi"
 )
 
-fig_age.update_traces(
-    marker_color=[BLUE if i == max_idx else LIGHT for i in range(len(age_rate))],
-    opacity=0.85,
-    hovertemplate="Age group: %{x}<br>Rate: %{y:.1%}<extra></extra>"
-)
-
-fig_age.add_annotation(
-    text="This age segment exhibits the highest responsiveness",
-    x=age_rate.loc[max_idx, 'age_group'],
-    y=age_rate.loc[max_idx, 'target'],
-    showarrow=True,
-    arrowhead=2,
-    ax=0, ay=-30
-)
-
-housing_rate = df.groupby('housing')['target'].mean().reset_index()
-fig_housing = px.bar(
-    housing_rate,
-    x='housing',
-    y='target',
-    title="Subscription Rate by Housing Loan",
-    text=housing_rate['target'].apply(lambda x: f"{x:.1%}"),
-    color_discrete_sequence=[GRAY]
-)
-
-balance_rate = df.groupby('balance_group', observed=True)['target'].mean().reset_index()
-fig_balance = px.bar(
-    balance_rate,
-    x='balance_group',
-    y='target',
-    title="Subscription Rate by Balance Group",
-    text=balance_rate['target'].apply(lambda x: f"{x:.1%}"),
-    color_discrete_sequence=[TEAL]
-)
-
-fig_balance.update_yaxes(range=[0, 0.18])
-
-for fig in [fig_age, fig_housing, fig_balance]:
-    fig.update_layout(
-        height=260,
-        margin=dict(l=20, r=20, t=50, b=20),
-        yaxis_title=None,
-        xaxis_title=None,
-        transition=dict(duration=500, easing="cubic-in-out")
-    )
 
 with c1:
-    st.markdown('<div class="chart-card">', unsafe_allow_html=True)
-    st.plotly_chart(fig_age, use_container_width=True, config={"displayModeBar": False})
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.plotly_chart(fig_job_age, use_container_width=True)
+
+age_balance = df.groupby(['age_group', 'balance_group'], observed=True)['target'].mean().reset_index()
+
+fig_age_balance = px.bar(
+    age_balance,
+    x='age_group',
+    y='target',
+    color='balance_group',
+    barmode='group',
+    title="Tỷ lệ đăng ký theo nhóm tuổi và mức số dư",
+    color_discrete_sequence=BALANCE_COLORS
+)
+fig_age_balance.update_layout(
+    height=360,
+    margin=COMMON_MARGIN,
+    xaxis_title="Nhóm tuổi",
+    yaxis_title= None,
+    legend_title_text="Nhóm số dư"
+)
 
 with c2:
-    st.markdown('<div class="chart-card">', unsafe_allow_html=True)
-    st.plotly_chart(fig_housing, use_container_width=True, config={"displayModeBar": False})
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.plotly_chart(fig_age_balance, use_container_width=True)
+# =========================================================
+# ROW 2 – PHÂN TÍCH TƯƠNG TÁC HỖ TRỢ
+# =========================================================
+c3, c4 = st.columns([1, 1.2])
+
+# ---------- Housing × Job (Slope Chart) ----------
+hj = df.groupby(['housing', 'job'])['target'].mean().reset_index()
+pivot_hj = hj.pivot(index='job', columns='housing', values='target').reset_index()
+
+fig_slope = go.Figure()
+
+for _, row in pivot_hj.iterrows():
+    fig_slope.add_trace(
+        go.Scatter(
+            x=['Có vay mua nhà', 'Không vay mua nhà'],
+            y=[row['yes'], row['no']],
+            mode='lines+markers',
+            name=row['job'],
+            line=dict(width=2),
+            marker=dict(size=6),
+            hovertemplate=(
+                f"Nghề nghiệp: {row['job']}<br>"
+                "Tình trạng nhà ở: %{x}<br>"
+                "Tỷ lệ đăng ký: %{y:.1%}<extra></extra>"
+            )
+        )
+    )
+COMMON_HEIGHT = 380
+COMMON_MARGIN = dict(l=40, r=40, t=60, b=60)
+
+fig_slope.update_layout(
+    title="Ảnh hưởng của vay mua nhà theo từng nhóm nghề nghiệp",
+    height=COMMON_HEIGHT,
+    margin=COMMON_MARGIN,
+    yaxis_title="Tỷ lệ đăng ký",
+    xaxis_title=None,
+    legend_title="Nghề nghiệp"
+)
+
+
+# ---------- Job × Balance Group (Heatmap) ----------
+jb = df.groupby(['job', 'balance_group'], observed=True)['target'].mean().reset_index()
+pivot_jb = jb.pivot(index='job', columns='balance_group', values='target')
+
+fig_heatmap = px.imshow(
+    pivot_jb,
+    color_continuous_scale="Blues",
+    aspect="auto",
+    labels=dict(
+        x="Nhóm số dư",
+        y="Nghề nghiệp",
+        color="Tỷ lệ đăng ký"
+    ),
+    title="Tỷ lệ đăng ký theo nghề nghiệp và mức số dư"
+)
+fig_heatmap.update_layout(
+    height=COMMON_HEIGHT,
+    margin=COMMON_MARGIN,
+    coloraxis_colorbar=dict(
+        thickness=14,
+        len=0.75,
+        y=0.5
+    )
+)
 
 with c3:
-    st.markdown('<div class="chart-card">', unsafe_allow_html=True)
-    st.plotly_chart(fig_balance, use_container_width=True, config={"displayModeBar": False})
-    st.markdown('</div>', unsafe_allow_html=True)
-
-# =========================
-# ROW 2 – BIVARIATE
-# =========================
-c4, c5 = st.columns(2)
-
-hb = df.groupby(['housing', 'balance_group'], observed=True)['target'].mean().reset_index()
-fig_hb = px.bar(
-    hb,
-    x='target',
-    y='balance_group',
-    color='housing',
-    barmode='group',
-    title="Housing Loan × Balance Group",
-    color_discrete_sequence=[BLUE, "#9ca3af"]
-)
-
-la = df.groupby(['loan', 'age_group'], observed=True)['target'].mean().reset_index()
-fig_la = px.bar(
-    la,
-    x='target',
-    y='age_group',
-    color='loan',
-    barmode='group',
-    title="Personal Loan × Age Group",
-    color_discrete_sequence=[GRAY, "#93c5fd"]
-)
-
-for fig in [fig_hb, fig_la]:
-    fig.update_layout(
-        height=280,
-        margin=dict(l=20, r=20, t=50, b=20),
-        yaxis_title=None,
-        xaxis_title=None,
-        transition=dict(duration=500, easing="cubic-in-out")
-    )
-    fig.update_traces(opacity=0.85)
+    st.plotly_chart(fig_slope, use_container_width=True)
 
 with c4:
-    st.markdown('<div class="chart-card">', unsafe_allow_html=True)
-    st.plotly_chart(fig_hb, use_container_width=True, config={"displayModeBar": False})
-    st.markdown('</div>', unsafe_allow_html=True)
-
-with c5:
-    st.markdown('<div class="chart-card">', unsafe_allow_html=True)
-    st.plotly_chart(fig_la, use_container_width=True, config={"displayModeBar": False})
-    st.markdown('</div>', unsafe_allow_html=True)
+    st.plotly_chart(fig_heatmap, use_container_width=True)
 
 # =========================
-# FOOTNOTE
+# GHI CHÚ
 # =========================
 st.caption(
-    "Note: All values represent mean subscription rate within each customer segment."
+    "Lưu ý: Các giá trị thể hiện tỷ lệ đăng ký trung bình trong từng phân khúc khách hàng."
 )
-
-## run py -m streamlit run dashboard/app.py
