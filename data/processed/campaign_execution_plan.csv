@@ -1,0 +1,201 @@
+age,job,marital,education,default,balance,housing,loan,contact,day_of_week,month,duration,campaign,pdays,previous,poutcome,age_group,balance_group,customer_tier,campaign_action
+56,retired,married,secondary,no,2624,yes,no,telephone,5,jul,145,3,30,3,success,29–58,very_high,Neutral,High Priority Call
+69,retired,single,secondary,no,1794,no,no,telephone,12,nov,293,1,30,2,unknown,>58,very_high,Best,Call Immediately
+46,blue-collar,married,secondary,no,3290,no,no,telephone,5,oct,471,5,60,0,failure,29–58,very_high,Neutral,Delay & Re-nurture
+32,technician,single,secondary,no,7784,yes,no,telephone,17,oct,577,4,240,2,other,29–58,very_high,Neutral,Review
+60,admin,married,secondary,no,1404,yes,no,telephone,17,jun,482,5,60,2,other,>58,high,Neutral,Review
+25,services,divorced,tertiary,no,35,yes,no,telephone,24,aug,506,2,999,3,failure,<29,low,Neutral,Delay & Re-nurture
+38,management,single,primary,no,1708,no,no,telephone,12,jul,316,4,360,1,other,29–58,very_high,Neutral,Review
+56,admin,single,tertiary,no,3330,yes,no,telephone,24,jul,332,3,360,3,failure,29–58,very_high,Neutral,Delay & Re-nurture
+36,retired,single,secondary,no,5056,no,no,telephone,28,sep,340,4,360,1,other,29–58,very_high,Neutral,Review
+40,management,single,primary,no,2435,yes,no,cellular,15,sep,237,3,240,1,unknown,29–58,very_high,Neutral,Review
+28,management,married,secondary,no,7962,no,no,cellular,15,nov,475,3,360,3,success,<29,very_high,Potential,High Priority Call
+28,management,single,primary,no,2360,yes,no,cellular,6,jul,84,4,999,3,success,<29,very_high,Neutral,High Priority Call
+41,blue-collar,divorced,tertiary,no,5215,yes,yes,cellular,12,nov,41,3,60,1,unknown,29–58,very_high,Neutral,Review
+70,retired,divorced,primary,no,3191,no,no,cellular,27,nov,429,3,240,3,unknown,>58,very_high,Best,Call Immediately
+53,management,single,primary,no,5751,no,no,telephone,29,sep,544,2,60,1,failure,29–58,very_high,Neutral,Delay & Re-nurture
+57,services,divorced,primary,yes,5268,yes,yes,telephone,20,aug,571,5,240,2,failure,29–58,very_high,Neutral,Delay & Re-nurture
+41,student,single,primary,no,7807,no,no,telephone,18,nov,266,5,60,3,failure,29–58,very_high,Neutral,Delay & Re-nurture
+20,management,single,primary,yes,6213,yes,no,telephone,14,may,308,2,30,2,other,<29,very_high,Neutral,Review
+39,blue-collar,divorced,secondary,no,6741,no,no,telephone,2,aug,377,4,60,0,failure,29–58,very_high,Neutral,Delay & Re-nurture
+70,admin,single,primary,no,4620,no,no,telephone,9,jul,133,1,360,2,unknown,>58,very_high,Best,Call Immediately
+19,retired,divorced,primary,no,2698,yes,no,telephone,5,jul,546,1,30,2,success,<29,very_high,Neutral,High Priority Call
+41,blue-collar,married,tertiary,no,7346,yes,no,cellular,20,nov,277,1,60,1,other,29–58,very_high,Neutral,Review
+61,management,single,primary,no,-123,yes,yes,cellular,26,aug,393,2,240,2,failure,>58,low,Neutral,Delay & Re-nurture
+47,retired,married,tertiary,no,7377,yes,no,cellular,29,sep,350,2,240,3,other,29–58,very_high,Neutral,Review
+55,student,divorced,secondary,no,4027,no,no,cellular,1,sep,315,3,240,1,other,29–58,very_high,Neutral,Review
+19,management,married,primary,no,400,yes,no,telephone,23,oct,178,1,120,0,failure,<29,medium,Neutral,Delay & Re-nurture
+38,blue-collar,married,tertiary,no,865,yes,no,telephone,3,jul,113,4,999,3,other,29–58,high,Neutral,Review
+50,technician,divorced,tertiary,no,1936,no,no,telephone,6,jun,435,4,240,0,success,29–58,very_high,Neutral,High Priority Call
+29,services,married,secondary,no,6743,no,yes,cellular,5,oct,485,1,30,2,unknown,<29,very_high,Potential,Nurture Campaign
+39,admin,married,primary,no,7604,yes,no,telephone,21,sep,190,1,240,3,unknown,29–58,very_high,Neutral,Review
+61,blue-collar,divorced,primary,no,6365,yes,no,telephone,27,aug,489,1,120,3,success,>58,very_high,Neutral,High Priority Call
+42,retired,married,tertiary,no,5784,yes,yes,telephone,5,sep,579,2,360,0,other,29–58,very_high,Neutral,Review
+66,management,divorced,primary,no,4942,yes,no,cellular,1,aug,529,2,30,3,failure,>58,very_high,Neutral,Delay & Re-nurture
+44,services,married,tertiary,no,4470,no,no,telephone,17,oct,538,2,120,3,other,29–58,very_high,Neutral,Review
+59,management,divorced,primary,yes,1990,yes,no,cellular,19,jul,510,5,360,3,success,>58,very_high,Neutral,High Priority Call
+45,retired,divorced,tertiary,no,2512,no,no,cellular,14,sep,143,4,30,2,other,29–58,very_high,Neutral,Review
+33,management,married,primary,yes,1992,yes,no,cellular,12,nov,390,4,60,0,unknown,29–58,very_high,Neutral,Review
+32,technician,married,secondary,no,1048,no,no,cellular,10,aug,370,3,999,3,other,29–58,high,Neutral,Review
+64,services,married,primary,no,3833,no,no,telephone,20,jul,478,2,999,1,success,>58,very_high,Best,High Priority Call
+68,services,single,primary,no,1797,no,no,cellular,21,jun,209,5,120,1,unknown,>58,very_high,Best,Call Immediately
+61,retired,single,secondary,no,3487,yes,no,cellular,18,aug,436,5,360,1,other,>58,very_high,Neutral,Review
+72,admin,single,primary,no,3818,yes,no,telephone,24,oct,225,4,999,1,other,>58,very_high,Neutral,Review
+69,technician,divorced,secondary,no,1770,yes,no,telephone,27,jun,495,2,360,2,unknown,>58,very_high,Neutral,Review
+74,blue-collar,married,primary,no,5565,no,no,cellular,11,jun,340,3,360,3,failure,>58,very_high,Best,Call Immediately
+20,management,divorced,tertiary,no,1002,no,no,telephone,30,may,291,2,120,0,unknown,<29,high,Potential,Nurture Campaign
+54,student,single,tertiary,no,7935,no,no,cellular,2,sep,448,1,120,3,failure,29–58,very_high,Neutral,Delay & Re-nurture
+68,management,married,primary,no,5367,no,no,cellular,25,aug,435,2,120,2,success,>58,very_high,Best,High Priority Call
+24,management,divorced,primary,no,7467,no,no,cellular,18,jun,172,1,999,1,success,<29,very_high,Potential,High Priority Call
+38,blue-collar,married,primary,no,5542,yes,no,cellular,29,may,371,1,120,2,unknown,29–58,very_high,Neutral,Review
+26,management,divorced,tertiary,no,5588,no,no,telephone,25,oct,345,3,999,3,unknown,<29,very_high,Potential,Nurture Campaign
+56,technician,married,primary,no,5208,yes,no,cellular,7,jul,130,4,120,0,success,29–58,very_high,Neutral,High Priority Call
+35,technician,single,tertiary,no,722,yes,no,telephone,24,nov,273,2,240,2,failure,29–58,medium,Neutral,Delay & Re-nurture
+21,services,single,secondary,no,219,yes,no,telephone,15,nov,519,1,360,0,success,<29,medium,Neutral,High Priority Call
+42,retired,married,tertiary,no,2004,yes,no,telephone,11,aug,41,2,120,2,unknown,29–58,very_high,Neutral,Review
+31,admin,divorced,tertiary,no,920,yes,no,telephone,18,jun,268,4,30,0,success,29–58,high,Neutral,High Priority Call
+67,student,single,secondary,no,750,no,yes,cellular,23,nov,590,4,360,0,unknown,>58,medium,Neutral,Review
+26,management,single,tertiary,no,2136,yes,no,telephone,12,sep,71,5,360,1,unknown,<29,very_high,Neutral,Review
+43,management,single,primary,no,5173,no,yes,cellular,6,nov,458,4,120,0,success,29–58,very_high,Neutral,High Priority Call
+70,blue-collar,married,primary,no,2043,yes,no,telephone,20,nov,187,3,60,1,failure,>58,very_high,Neutral,Delay & Re-nurture
+19,retired,married,tertiary,no,2445,yes,no,telephone,23,nov,245,1,120,3,other,<29,very_high,Neutral,Review
+37,technician,divorced,primary,no,4412,yes,no,cellular,30,may,491,5,360,3,success,29–58,very_high,Neutral,High Priority Call
+45,student,divorced,tertiary,no,1665,yes,no,cellular,13,jun,163,3,30,1,other,29–58,very_high,Neutral,Review
+64,services,divorced,primary,no,5828,no,no,cellular,20,sep,96,2,360,1,success,>58,very_high,Best,High Priority Call
+24,technician,married,primary,no,7126,yes,no,telephone,16,jun,36,1,30,2,other,<29,very_high,Neutral,Review
+61,retired,married,tertiary,no,6171,no,yes,telephone,18,aug,555,4,999,2,failure,>58,very_high,Best,Call Immediately
+25,admin,divorced,primary,no,6159,yes,no,cellular,10,aug,102,1,240,2,failure,<29,very_high,Neutral,Delay & Re-nurture
+64,services,divorced,tertiary,no,7663,no,no,cellular,28,aug,428,2,360,3,success,>58,very_high,Best,High Priority Call
+52,admin,married,primary,no,3028,no,no,cellular,23,oct,434,5,120,2,unknown,29–58,very_high,Neutral,Review
+31,blue-collar,divorced,primary,no,3519,no,no,cellular,8,nov,159,5,999,0,other,29–58,very_high,Neutral,Review
+34,blue-collar,single,secondary,no,2171,yes,no,telephone,18,oct,495,5,240,0,unknown,29–58,very_high,Neutral,Review
+53,management,married,secondary,yes,2691,yes,no,cellular,21,may,235,4,120,2,unknown,29–58,very_high,Neutral,Review
+67,admin,divorced,tertiary,no,3556,yes,no,cellular,1,aug,295,3,60,0,unknown,>58,very_high,Neutral,Review
+57,retired,married,secondary,no,4025,no,no,cellular,23,sep,566,3,120,3,failure,29–58,very_high,Neutral,Delay & Re-nurture
+21,student,single,tertiary,no,-106,yes,yes,cellular,8,jun,282,1,30,0,success,<29,low,Neutral,High Priority Call
+19,services,married,secondary,no,2474,yes,no,telephone,29,nov,318,4,30,3,success,<29,very_high,Neutral,High Priority Call
+23,technician,married,primary,no,6698,no,no,cellular,6,jul,193,5,60,1,failure,<29,very_high,Potential,Delay & Re-nurture
+71,retired,married,tertiary,no,593,yes,no,telephone,5,sep,124,5,999,1,failure,>58,medium,Neutral,Delay & Re-nurture
+59,retired,married,tertiary,no,1916,no,no,cellular,15,nov,139,2,240,1,success,>58,very_high,Best,High Priority Call
+21,blue-collar,single,primary,no,5579,yes,no,cellular,22,oct,365,2,120,1,unknown,<29,very_high,Neutral,Review
+71,admin,married,tertiary,no,5966,yes,no,telephone,15,oct,267,5,30,0,other,>58,very_high,Neutral,Review
+46,management,married,tertiary,no,614,no,yes,cellular,2,sep,410,5,999,2,other,29–58,medium,Neutral,Review
+35,management,divorced,secondary,no,145,yes,no,telephone,1,oct,465,4,60,0,other,29–58,medium,Neutral,Review
+43,services,married,tertiary,no,2243,no,no,telephone,23,aug,512,3,360,3,unknown,29–58,very_high,Neutral,Review
+61,blue-collar,divorced,primary,no,7583,yes,yes,cellular,23,may,54,2,30,0,success,>58,very_high,Neutral,High Priority Call
+51,retired,single,secondary,no,784,yes,no,telephone,26,jun,146,3,60,0,failure,29–58,medium,Neutral,Delay & Re-nurture
+27,student,single,secondary,no,7590,no,no,telephone,11,may,511,4,120,3,success,<29,very_high,Potential,High Priority Call
+53,blue-collar,single,primary,no,627,no,yes,telephone,10,nov,421,5,240,1,unknown,29–58,medium,Neutral,Review
+31,services,single,primary,no,3331,no,no,telephone,30,jun,566,3,30,1,failure,29–58,very_high,Neutral,Delay & Re-nurture
+48,services,divorced,secondary,no,6947,yes,no,telephone,18,jun,108,5,30,1,unknown,29–58,very_high,Neutral,Review
+65,blue-collar,married,tertiary,no,4251,no,no,telephone,18,may,202,5,120,2,other,>58,very_high,Best,Call Immediately
+32,services,single,secondary,no,3676,yes,yes,telephone,17,sep,41,1,360,3,other,29–58,very_high,Neutral,Review
+25,blue-collar,married,primary,no,5759,yes,no,telephone,26,jun,157,3,999,3,unknown,<29,very_high,Neutral,Review
+31,technician,divorced,secondary,yes,-74,no,no,cellular,8,may,121,3,240,0,failure,29–58,low,Neutral,Delay & Re-nurture
+40,blue-collar,divorced,primary,no,2977,yes,no,cellular,15,jun,572,5,30,2,failure,29–58,very_high,Neutral,Delay & Re-nurture
+74,admin,divorced,secondary,no,5824,no,no,telephone,8,jul,561,4,240,1,success,>58,very_high,Best,High Priority Call
+57,blue-collar,single,tertiary,no,4909,yes,yes,cellular,17,sep,476,1,30,2,other,29–58,very_high,Neutral,Review
+38,services,married,secondary,no,3946,yes,no,telephone,12,aug,419,5,240,3,success,29–58,very_high,Neutral,High Priority Call
+33,admin,married,secondary,no,6996,yes,yes,telephone,27,jun,72,2,60,3,success,29–58,very_high,Neutral,High Priority Call
+62,services,married,primary,no,3168,no,yes,cellular,8,jul,283,2,30,0,unknown,>58,very_high,Best,Call Immediately
+35,management,divorced,primary,no,3597,no,no,telephone,25,aug,159,1,240,0,unknown,29–58,very_high,Neutral,Review
+64,management,single,primary,no,1592,no,no,telephone,14,aug,89,4,999,3,success,>58,very_high,Best,High Priority Call
+70,admin,divorced,secondary,no,5532,no,no,telephone,4,nov,496,5,60,1,other,>58,very_high,Best,Call Immediately
+41,technician,divorced,tertiary,no,3276,no,no,telephone,1,jun,316,3,60,1,unknown,29–58,very_high,Neutral,Review
+43,management,married,primary,no,3217,no,no,cellular,1,may,546,1,999,2,success,29–58,very_high,Neutral,High Priority Call
+42,blue-collar,divorced,primary,no,1445,yes,no,telephone,19,jun,496,4,240,3,success,29–58,high,Neutral,High Priority Call
+62,services,married,secondary,no,2830,yes,no,telephone,16,jul,374,3,120,3,success,>58,very_high,Neutral,High Priority Call
+58,management,single,primary,yes,2672,yes,no,telephone,14,aug,411,2,999,1,success,29–58,very_high,Neutral,High Priority Call
+46,management,married,tertiary,no,2872,no,no,cellular,21,jun,282,2,240,1,success,29–58,very_high,Neutral,High Priority Call
+32,technician,single,tertiary,no,1654,no,no,telephone,16,may,85,3,999,3,success,29–58,very_high,Neutral,High Priority Call
+62,admin,married,primary,no,3821,yes,no,cellular,5,nov,492,1,999,0,unknown,>58,very_high,Neutral,Review
+18,admin,divorced,primary,no,4462,no,no,cellular,9,jun,486,2,30,3,other,<29,very_high,Potential,Nurture Campaign
+42,retired,divorced,secondary,no,6314,no,no,telephone,26,sep,112,5,240,3,success,29–58,very_high,Neutral,High Priority Call
+24,technician,single,tertiary,no,4831,yes,yes,telephone,30,nov,128,3,120,1,failure,<29,very_high,Neutral,Delay & Re-nurture
+26,blue-collar,single,tertiary,no,2508,no,no,cellular,28,may,178,3,30,1,unknown,<29,very_high,Potential,Nurture Campaign
+41,admin,single,primary,no,6912,no,no,telephone,2,jul,358,2,999,0,unknown,29–58,very_high,Neutral,Review
+18,services,married,secondary,no,3307,yes,no,cellular,18,aug,185,1,360,0,success,<29,very_high,Neutral,High Priority Call
+61,technician,married,tertiary,no,6256,no,no,cellular,6,jun,219,5,999,2,unknown,>58,very_high,Best,Call Immediately
+25,management,single,tertiary,no,4012,yes,no,telephone,9,may,523,1,999,3,success,<29,very_high,Neutral,High Priority Call
+41,services,divorced,secondary,no,7770,no,no,telephone,1,nov,292,4,240,1,other,29–58,very_high,Neutral,Review
+28,services,married,secondary,no,336,no,no,cellular,9,sep,109,4,240,0,other,<29,medium,Potential,Nurture Campaign
+68,management,married,tertiary,no,1425,no,no,cellular,25,may,429,2,30,2,unknown,>58,high,Best,Call Immediately
+34,technician,married,tertiary,no,7773,yes,no,cellular,16,oct,289,2,120,2,unknown,29–58,very_high,Neutral,Review
+25,management,single,secondary,no,7870,no,no,cellular,13,sep,581,2,30,1,failure,<29,very_high,Potential,Delay & Re-nurture
+52,retired,single,tertiary,yes,6290,no,no,telephone,9,nov,130,4,60,1,unknown,29–58,very_high,Neutral,Review
+52,services,single,primary,no,3400,yes,no,telephone,21,jul,388,1,999,2,failure,29–58,very_high,Neutral,Delay & Re-nurture
+50,student,single,primary,no,6583,no,no,telephone,13,aug,409,1,360,0,other,29–58,very_high,Neutral,Review
+22,student,single,secondary,no,4771,yes,no,telephone,9,nov,250,2,999,2,other,<29,very_high,Neutral,Review
+59,blue-collar,divorced,secondary,no,1005,no,no,telephone,11,jul,449,5,999,3,success,>58,high,Best,High Priority Call
+56,admin,divorced,secondary,no,1790,yes,no,cellular,4,jun,153,1,30,3,other,29–58,very_high,Neutral,Review
+58,management,single,primary,no,5099,yes,yes,telephone,2,may,451,4,360,1,failure,29–58,very_high,Neutral,Delay & Re-nurture
+45,management,married,tertiary,no,3372,yes,no,telephone,29,oct,260,3,360,0,unknown,29–58,very_high,Neutral,Review
+24,blue-collar,single,primary,no,5775,no,no,telephone,6,sep,92,3,360,0,success,<29,very_high,Potential,High Priority Call
+26,blue-collar,divorced,tertiary,no,6120,yes,no,telephone,14,sep,514,3,30,3,failure,<29,very_high,Neutral,Delay & Re-nurture
+25,blue-collar,divorced,primary,no,4180,no,no,telephone,4,may,512,5,999,2,unknown,<29,very_high,Potential,Nurture Campaign
+29,services,married,tertiary,no,4557,yes,no,cellular,6,oct,548,2,30,1,success,<29,very_high,Neutral,High Priority Call
+51,retired,divorced,primary,no,2513,yes,no,cellular,19,may,184,4,240,2,other,29–58,very_high,Neutral,Review
+50,management,single,secondary,no,5388,yes,no,cellular,6,jun,121,5,240,2,failure,29–58,very_high,Neutral,Delay & Re-nurture
+65,services,married,primary,no,766,no,no,telephone,2,jul,555,4,30,2,unknown,>58,medium,Neutral,Review
+72,blue-collar,single,tertiary,no,4744,yes,no,cellular,18,nov,484,4,360,0,success,>58,very_high,Neutral,High Priority Call
+40,management,single,primary,no,3232,no,no,cellular,13,sep,539,2,999,3,success,29–58,very_high,Neutral,High Priority Call
+41,services,married,primary,no,488,no,no,telephone,9,jun,212,3,30,0,other,29–58,medium,Neutral,Review
+54,retired,single,primary,no,4043,no,no,telephone,23,jul,415,2,30,3,unknown,29–58,very_high,Neutral,Review
+52,services,divorced,secondary,no,3501,yes,yes,telephone,19,jun,434,5,30,1,other,29–58,very_high,Neutral,Review
+61,retired,single,primary,no,4982,yes,yes,cellular,13,oct,275,5,60,1,other,>58,very_high,Neutral,Review
+57,blue-collar,married,secondary,no,6504,no,no,cellular,11,sep,500,5,240,2,unknown,29–58,very_high,Neutral,Review
+39,retired,married,secondary,no,4222,yes,no,telephone,1,nov,452,2,360,3,unknown,29–58,very_high,Neutral,Review
+44,management,married,primary,no,1559,no,no,telephone,24,may,94,4,120,3,unknown,29–58,high,Neutral,Review
+52,blue-collar,single,primary,no,2282,yes,no,cellular,30,may,42,4,360,3,failure,29–58,very_high,Neutral,Delay & Re-nurture
+18,management,married,primary,no,7858,no,yes,cellular,22,jul,242,1,120,2,unknown,<29,very_high,Potential,Nurture Campaign
+52,student,married,tertiary,no,751,no,yes,telephone,7,nov,271,5,60,2,success,29–58,medium,Neutral,High Priority Call
+54,technician,single,primary,no,1879,no,no,telephone,25,aug,522,4,30,1,other,29–58,very_high,Neutral,Review
+64,retired,divorced,secondary,no,2517,yes,no,cellular,21,oct,242,1,60,0,failure,>58,very_high,Neutral,Delay & Re-nurture
+31,technician,single,primary,no,4324,no,no,telephone,15,jul,367,4,60,3,unknown,29–58,very_high,Neutral,Review
+20,technician,married,tertiary,yes,7111,yes,no,cellular,1,aug,202,5,999,3,failure,<29,very_high,Neutral,Delay & Re-nurture
+18,retired,married,primary,no,6986,yes,yes,cellular,12,jun,193,3,240,0,unknown,<29,very_high,Neutral,Review
+22,blue-collar,single,tertiary,no,1865,no,no,cellular,26,oct,494,5,120,3,failure,<29,very_high,Potential,Delay & Re-nurture
+43,student,divorced,tertiary,no,568,no,no,cellular,7,jun,526,2,30,2,other,29–58,medium,Neutral,Review
+72,management,married,primary,no,5290,no,no,telephone,15,nov,424,4,120,2,other,>58,very_high,Best,Call Immediately
+31,services,married,secondary,no,6445,no,no,telephone,21,sep,337,4,360,3,success,29–58,very_high,Neutral,High Priority Call
+56,management,married,tertiary,no,4883,yes,no,cellular,19,oct,212,2,120,2,success,29–58,very_high,Neutral,High Priority Call
+44,services,single,primary,no,5032,yes,yes,cellular,28,aug,539,2,360,2,unknown,29–58,very_high,Neutral,Review
+26,management,married,primary,no,5597,no,yes,cellular,29,sep,575,3,240,3,other,<29,very_high,Potential,Nurture Campaign
+32,retired,divorced,secondary,no,4726,yes,no,cellular,25,may,593,4,360,1,failure,29–58,very_high,Neutral,Delay & Re-nurture
+32,student,married,tertiary,yes,5816,yes,no,cellular,1,aug,256,4,120,0,failure,29–58,very_high,Neutral,Delay & Re-nurture
+43,services,married,tertiary,no,3135,yes,no,telephone,17,jul,465,3,120,2,failure,29–58,very_high,Neutral,Delay & Re-nurture
+59,admin,divorced,primary,no,7838,yes,no,telephone,17,may,451,1,360,1,success,>58,very_high,Neutral,High Priority Call
+30,blue-collar,married,primary,no,4673,yes,no,telephone,3,may,583,3,60,2,failure,29–58,very_high,Neutral,Delay & Re-nurture
+68,management,single,secondary,no,1281,yes,no,telephone,12,jul,50,5,240,2,success,>58,high,Neutral,High Priority Call
+49,management,single,secondary,no,6105,yes,no,cellular,6,oct,583,4,999,0,success,29–58,very_high,Neutral,High Priority Call
+56,services,single,tertiary,yes,3251,yes,yes,cellular,26,may,426,2,30,2,unknown,29–58,very_high,Neutral,Review
+66,blue-collar,divorced,tertiary,no,-146,no,no,cellular,11,nov,134,5,120,0,failure,>58,low,Neutral,Delay & Re-nurture
+69,blue-collar,married,primary,no,7443,yes,yes,cellular,3,aug,221,4,30,0,failure,>58,very_high,Neutral,Delay & Re-nurture
+49,retired,single,tertiary,no,3262,yes,no,cellular,8,sep,46,3,999,0,other,29–58,very_high,Neutral,Review
+21,admin,divorced,secondary,no,632,no,no,telephone,14,may,149,5,30,1,unknown,<29,medium,Potential,Nurture Campaign
+47,retired,married,secondary,no,5754,yes,yes,cellular,14,aug,422,4,999,3,other,29–58,very_high,Neutral,Review
+54,retired,divorced,primary,no,7021,no,no,telephone,10,jun,454,1,360,1,unknown,29–58,very_high,Neutral,Review
+40,retired,single,secondary,no,3110,no,no,telephone,2,aug,158,1,60,3,failure,29–58,very_high,Neutral,Delay & Re-nurture
+56,retired,single,secondary,no,3100,yes,no,telephone,14,sep,159,2,120,3,success,29–58,very_high,Neutral,High Priority Call
+62,retired,single,secondary,no,6522,yes,no,telephone,9,aug,589,4,999,0,success,>58,very_high,Neutral,High Priority Call
+32,student,divorced,secondary,no,7018,no,yes,cellular,3,jul,58,1,30,2,success,29–58,very_high,Neutral,High Priority Call
+60,blue-collar,divorced,primary,no,7576,no,no,telephone,21,sep,126,3,120,0,success,>58,very_high,Best,High Priority Call
+46,retired,single,primary,no,3475,yes,no,telephone,26,oct,39,4,60,2,success,29–58,very_high,Neutral,High Priority Call
+53,blue-collar,divorced,tertiary,no,2854,no,yes,telephone,8,jun,271,3,360,3,other,29–58,very_high,Neutral,Review
+30,blue-collar,single,secondary,no,7770,yes,no,cellular,16,jul,261,3,120,0,unknown,29–58,very_high,Neutral,Review
+49,technician,single,tertiary,no,1943,no,yes,cellular,2,oct,313,1,999,2,failure,29–58,very_high,Neutral,Delay & Re-nurture
+24,student,married,primary,no,5007,yes,yes,cellular,6,aug,229,4,60,1,other,<29,very_high,Neutral,Review
+68,retired,divorced,primary,no,2338,no,no,telephone,28,sep,108,5,30,2,unknown,>58,very_high,Best,Call Immediately
+39,management,single,primary,no,4347,no,yes,telephone,21,jun,202,1,60,0,success,29–58,very_high,Neutral,High Priority Call
+45,services,single,primary,no,5419,no,no,cellular,29,jul,496,1,60,1,unknown,29–58,very_high,Neutral,Review
+19,admin,divorced,primary,no,6412,yes,no,telephone,26,oct,445,4,240,2,unknown,<29,very_high,Neutral,Review
+59,management,married,primary,no,4805,yes,no,cellular,25,oct,478,4,60,2,success,>58,very_high,Neutral,High Priority Call
+62,student,married,primary,no,622,yes,no,cellular,12,jun,116,3,60,2,success,>58,medium,Neutral,High Priority Call
+74,services,single,secondary,no,743,yes,no,telephone,5,nov,130,4,120,2,success,>58,medium,Neutral,High Priority Call
+70,student,divorced,tertiary,no,5950,yes,yes,telephone,2,aug,37,3,30,2,failure,>58,very_high,Neutral,Delay & Re-nurture
+23,blue-collar,married,primary,no,4225,no,no,telephone,16,jun,229,1,120,1,success,<29,very_high,Potential,High Priority Call
+45,services,divorced,secondary,no,1998,yes,no,telephone,5,oct,534,2,120,3,failure,29–58,very_high,Neutral,Delay & Re-nurture
+45,blue-collar,divorced,secondary,no,4042,yes,yes,cellular,15,may,116,5,999,1,success,29–58,very_high,Neutral,High Priority Call
+61,management,single,tertiary,no,3495,no,no,cellular,12,jul,72,1,120,1,failure,>58,very_high,Best,Call Immediately
+61,management,married,primary,no,3252,no,yes,cellular,4,jun,414,4,240,1,unknown,>58,very_high,Best,Call Immediately
+37,services,single,tertiary,yes,1108,no,no,cellular,15,nov,464,5,240,3,other,29–58,high,Neutral,Review
