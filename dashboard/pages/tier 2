@@ -1,6 +1,7 @@
 # =========================================================
 # CUSTOMER KNOWLEDGE DASHBOARD (ACADEMIC – FINAL VERSION)
 # =========================================================
+# python -m streamlit run dashboard/app.py
 
 import streamlit as st
 import pandas as pd
@@ -59,7 +60,7 @@ st.markdown("""
 # =========================
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 df = pd.read_csv(os.path.join(BASE_DIR, "..","..", "data", "customer.csv"))
-df = df[['age', 'balance', 'housing', 'loan', 'target', 'job']].copy()
+df = df[['age', 'balance', 'housing', 'loan', 'target']].copy()
 
 # =========================
 # FEATURE ENGINEERING
@@ -235,7 +236,7 @@ for _, row in slope_df.iterrows():
     )
 
 fig_slope.update_layout(
-    title="Ảnh hưởng của khoản vay mua nhà lên tỷ lệ đăng ký theo công việc",
+    title="Effect of Housing Loan across Job Categories",
     yaxis_title="Subscription Rate",
     xaxis_title=None,
     height=380,
@@ -265,7 +266,7 @@ fig_heatmap = px.imshow(
         y="Job",
         color="Subscription Rate"
     ),
-    title="Ảnh hưởng của công việc và số dư tài khoản lên tỷ lệ đăng ký"
+    title="Subscription Rate by Job and Balance Group"
 )
 
 fig_heatmap.update_layout(
