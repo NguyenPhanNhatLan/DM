@@ -48,6 +48,7 @@ project-root/
   - matplotlib
   - plotly
   - streamlit
+
 Toàn bộ thư viện được liệt kê trong `requirements.txt`.
 
 ## Cài đặt
