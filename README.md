@@ -25,7 +25,7 @@ MLflow được sử dụng để theo dõi toàn bộ quá trình huấn luyệ
 - Đánh giá hiệu quả mô hình qua nhiều chỉ số (Precision, Recall, F1, ROC-AUC, PR-AUC)
 - Lưu trữ và quản lý mô hình tốt nhất
 [https://mlflow.thonph.site/]
-![Uploading image.png…]()
+<img width="2877" height="1467" alt="Screenshot 2025-12-26 231030" src="https://github.com/user-attachments/assets/9f56281c-57a0-4d37-9856-66c18104b436" />
 
 
 ### Trực quan hóa tri thức
