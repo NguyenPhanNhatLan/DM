@@ -37,7 +37,7 @@ project-root/
 ├── requirements.txt # Danh sách thư viện
 ├── README.md # Tài liệu hướng dẫn
 └── .gitignore
-
+```
 ## Môi trường thực thi
 - Python: **3.9 trở lên**
 - Hệ điều hành: Windows / Linux / macOS
