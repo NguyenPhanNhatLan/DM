@@ -17,17 +17,33 @@
 - Trực quan hóa:
   - Dashboard tương tác bằng Streamlit
 
+## Theo dõi huấn luyện mô hình & kết quả trực quan
+
+### MLflow
+MLflow được sử dụng để theo dõi toàn bộ quá trình huấn luyện mô hình, bao gồm:
+- So sánh các bộ tham số
+- Đánh giá hiệu quả mô hình qua nhiều chỉ số (Precision, Recall, F1, ROC-AUC, PR-AUC)
+- Lưu trữ và quản lý mô hình tốt nhất
+[https://mlflow.thonph.site/]
+![Uploading image.png…]()
+
+
+### Trực quan hóa tri thức
+Dashboard dưới đây tổng hợp các tri thức rút ra từ quá trình khai phá dữ liệu (data mining), bao gồm phân tích khách hàng, chiến dịch, và cả hai.
+<img width="2856" height="1369" alt="Screenshot 2025-12-25 211801" src="https://github.com/user-attachments/assets/c86207b2-bd75-4581-ae36-aad16ad8da19" />
+
 ## Cấu trúc thư mục
 ```
 project-root/
 │
 ├── data/
-│ ├── raw/ # Dữ liệu gốc
-│ └── processed/ # Dữ liệu sau tiền xử lý
+│ └── processed/ # Dữ liệu sau xử lý cho data_mining, models và actions
 │
 ├── notebooks/ # Notebook phân tích & thử nghiệm
-│
-├── src/ # Code tiền xử lý & huấn luyện mô hình
+│ ├── eda # Tiền xử lý, khám phá dữ liệu
+│ ├── data_mining # Khám phá tri thức từ campaign, customer, tổng hợp
+│ ├── models # Huấn luyện mô hình
+| └── actions # Khuyến nghị hành động từ tri thức và dự báo từ model
 │
 ├── dashboard/ # Ứng dụng Streamlit
 │ ├── app.py
