@@ -49,8 +49,9 @@ project-root/
 │ ├── pages/
 │ └── services/
 │
-├── requirements.txt # Danh sách thư viện
 ├── README.md # Tài liệu hướng dẫn
+├── SLIDE # slide thuyết trình
+├── requirements.txt # Danh sách thư viện
 └── .gitignore
 ```
 ## Môi trường thực thi
